@@ -63,4 +63,30 @@ describe("First Api Tests", () => {
       '{"name":"Alejandro Rios","age":"24","as":"software engineer"}'
     );
   });
+
+  it("Consume PUT Service", async () => {
+    const response = await axios({
+      method: "put",
+      url: "https://httpbin.org/anything",
+      data: {
+        title: "Making PUT Requests with Axios",
+        status: "published",
+      },
+    });
+
+    expect(response.status).to.equal(StatusCodes.OK);
+    expect(response.data.data).to.be.equal(
+      '{"title":"Making PUT Requests with Axios","status":"published"}'
+    );
+  });
+
+  it("Consume DELETE Service", async () => {
+    const response = await axios({
+      method: "delete",
+      url: "https://httpbin.org/anything",
+    });
+
+    console.log(response.data);
+    expect(response.status).to.equal(StatusCodes.OK);
+  });
 });
